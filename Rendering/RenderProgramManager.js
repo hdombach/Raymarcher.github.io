@@ -105,6 +105,9 @@ class RenderProgramManager {
         self.info.uniformLocations.cameraMatrix = self.gl.getUniformLocation(self.mainProgram, "cameraMatrix");
         self.info.uniformLocations.cameraResolution = self.gl.getUniformLocation(self.mainProgram, "cameraResolution");
         self.info.uniformLocations.exposure = self.gl.getUniformLocation(self.mainProgram, "exposure");
+        self.info.uniformLocations.maxMarchSteps = self.gl.getUniformLocation(self.mainProgram, "maxMarches");
+        self.info.uniformLocations.stepClamp = self.gl.getUniformLocation(self.mainProgram, "stepClamp");
+        self.info.uniformLocations.bulbIterations = self.gl.getUniformLocation(self.mainProgram, "bulbIterations");
     }
 
     loadMainProgram(self) {

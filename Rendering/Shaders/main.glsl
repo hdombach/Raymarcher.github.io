@@ -5,10 +5,12 @@ uniform float cameraZoom;
 uniform mat4 cameraMatrix;
 uniform vec2 cameraResolution;
 uniform float exposure;
+uniform int maxMarches;
+uniform float stepClamp;
 
 varying lowp vec2 vecPosition;
 
-const int MAX_ITERATIONS = 100;
+const int MAX_ITERATIONS = 1000;
 
 //IMPORT ./Rendering/Shaders/Types/ray.glsl
 //IMPORT ./Rendering/Shaders/Types/camera.glsl
@@ -31,7 +33,7 @@ void main() {
         float step = DE(currentRay.position);
         currentRay = marchRay(currentRay, step);
         d += step;
-        if (step < 0.0001) {
+        if (step < stepClamp || i < maxMarches) {
             break;
         }
         if (d > 100.0) {
