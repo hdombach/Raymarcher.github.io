@@ -30,3 +30,7 @@ function newFrame(time) {
 }
 
 newFrame(0);
+
+window.addEventListener('wheel', (e) => {
+    e.preventDefault();
+  }, {passive: false} );

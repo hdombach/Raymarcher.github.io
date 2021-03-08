@@ -36,7 +36,7 @@ class ViewInfo {
             var rotationEnd = vec3.create();
 
             vec3.set(rotationStart, 0, 0, 1);
-            vec3.set(rotationEnd, this.cameraRotationDeltaX * 0.001, this.cameraRotationDeltaY * 0.001, 1);
+            vec3.set(rotationEnd, this.cameraRotationDeltaX, this.cameraRotationDeltaY, 1);
             vec3.normalize(rotationEnd, rotationEnd);
 
             var angle = Math.acos(vec3.dot(rotationStart, rotationEnd));
@@ -58,6 +58,25 @@ class ViewInfo {
             mat4.fromQuat(this.cameraMatrix, this.quaternion);
 
         }
+    }
+
+    rotateCamera(direction) {
+        this.cameraRotationDeltaX = direction[0];
+        this.cameraRotationDeltaY = direction[1];
+    }
+
+    moveCamera(direction) {
+        var conj = quat.create();
+
+
+        quat.conjugate(conj, this.quaternion);
+
+        vec3.transformQuat(direction, direction, conj);
+
+
+        this.cameraPositionX += direction[0];
+        this.cameraPositionY += direction[1];
+        this.cameraPositionZ += direction[2];
     }
 }
 

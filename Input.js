@@ -15,44 +15,52 @@ export function AttachMouseInput(viewInfo, element) {
     var isMouseDown = false;
 
 
-    element.onmousedown = function(event) {
+    window.onmousedown = function(event) {
         isMouseDown = true;
     }
 
-    element.onmouseup = function(event) {
+    window.onmouseup = function(event) {
         isMouseDown = false;
     }
 
-    element.onmouseleave = function(event) {
+    window.onmouseleave = function(event) {
         isMouseDown = false;
     }
 
-    element.onmousemove = function(event) {
+    window.onmousemove = function(event) {
         if (isMouseDown) {
-            viewInfo.cameraRotationX += event.movementX;
-            viewInfo.cameraRotationY += event.movementY;
 
-            viewInfo.cameraRotationDeltaX = event.movementX;
-            viewInfo.cameraRotationDeltaY = event.movementY * -1;
+            var movement = vec3.create();
+            vec3.set(movement, event.movementX * -0.003, event.movementY * 0.003, 0);
+
+            if (event.shiftKey) {
+                vec3.scale(movement, movement, -0.5);
+                viewInfo.rotateCamera(movement);
+            } else {
+                viewInfo.moveCamera(movement);
+            }
         }
     }
 
-    element.onwheel = function(event) {
-        var movement = vec3.create();
-        vec3.set(movement, 0, 0, 1);
+    window.onwheel = function(event) {
 
-        var conj = quat.create();
+        if (event.ctrlKey || event.shiftKey) {
 
-        quat.conjugate(conj, viewInfo.quaternion);
+            //move camera foward
 
-        vec3.transformQuat(movement, movement, conj);
+            var movement = vec3.create();
+            vec3.set(movement, 0, 0, event.deltaY * -0.01);
+    
+            viewInfo.moveCamera(movement);
+        } else {
 
+            
 
-        vec3.scale(movement, movement, event.deltaY * -0.01);
-
-
-        viewInfo.cameraPositionX += movement[0];
-        viewInfo.cameraPositionY += movement[1];
-        viewInfo.cameraPositionZ += movement[2];
+            var movement = vec2.create();
+            vec2.set(movement, event.deltaX * -0.001, event.deltaY * 0.001);
+    
+            viewInfo.rotateCamera(movement);
+            
+        }
     }
 }
