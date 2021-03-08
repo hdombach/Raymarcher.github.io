@@ -99,6 +99,17 @@ class Renderer {
 
             this.gl.uniform2f(this.programManager.info.uniformLocations.cameraResolution,
                 this.info.cameraResolutionX, this.info.cameraResolutionY)
+
+            this.gl.uniform1i(this.programManager.info.uniformLocations.maxMarches,
+                this.info.maxMarches);
+
+            this.gl.uniform1f(this.programManager.info.uniformLocations.stepClamp,
+                this.info.stepClamp);
+
+            this.gl.uniform1i(this.programManager.info.uniformLocations.bulbIterations,
+                this.info.bulbIterations);
+
+            console.log(this.info.stepClamp);
         }
     }
 

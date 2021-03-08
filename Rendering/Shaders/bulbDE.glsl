@@ -1,15 +1,16 @@
 
+uniform int bulbIterations;
+
 float bulbDE(vec4 pos) {
   vec3 z = pos.xyz;
   float dr = 1.0;
   float r = 0.0;
   float power = 8.0;
-  int iterations = 50;
   float bailout = 2.0;
 
-  for (int i = 0; i < 20; i++) {
+  for (int i = 0; i < 1000; i++) {
     r = length(z);
-    if (r > bailout) {
+    if (r > bailout || i > bulbIterations) {
       break;
     }
 

@@ -23,6 +23,11 @@ class ViewInfo {
         this.quaternion = quat.create();
 
         this.resolutionMultiplier = 25;
+
+        this.bulbIterations = 20;
+        this.maxMarches = 100;
+        this.stepClamp = 0.0001;
+
     }
 
     get cameraPostion() {
