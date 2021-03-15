@@ -11,6 +11,24 @@ export function AttachNumberInputs(viewInfo) {
     }
 }
 
+export function AttachKeyInput(keyTracker) {
+    keyTracker.testKey = function(key) {
+        if (this[key] === undefined) {
+            return false;
+        } else {
+            return this[key];
+        }
+    }
+
+    window.onkeydown = function(event) {
+        keyTracker[event.key] = true;
+    }
+
+    window.onkeyup = function(event) {
+        keyTracker[event.key] = false;
+    }
+}
+
 export function AttachMouseInput(viewInfo, element) {
     var isMouseDown = false;
 
@@ -34,10 +52,10 @@ export function AttachMouseInput(viewInfo, element) {
             vec3.set(movement, event.movementX * -0.003, event.movementY * 0.003, 0);
 
             if (event.shiftKey) {
+                viewInfo.moveCamera(movement);
+            } else {
                 vec3.scale(movement, movement, -0.5);
                 viewInfo.rotateCamera(movement);
-            } else {
-                viewInfo.moveCamera(movement);
             }
         }
     }
@@ -49,7 +67,7 @@ export function AttachMouseInput(viewInfo, element) {
             //move camera foward
 
             var movement = vec3.create();
-            vec3.set(movement, 0, 0, event.deltaY * -0.01);
+            vec3.set(movement, 0, 0, (event.deltaY + event.deltaX) * -0.01);
     
             viewInfo.moveCamera(movement);
         } else {
