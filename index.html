@@ -6,13 +6,16 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
         <title>Ray Marcher</title>
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     </head>
     <body>
         <canvas id="glCanvas" class="fullscreen"></canvas>
 
-        <div class="fullscreen" id="overlay">
+        <div class="fullscreen" id="overlay" style="pointer-events: none;">
             <!--  Insert button for hiding and showing menu -->
-            <div class="menu">
+            <div class="menu" id="menu">
+                <span class="material-icons" id="collapseButton" style="float: right; margin: 10px;">menu</span>
                 <h2>Settings</h2>
 
                 <!--<p>Camera Position: </p>

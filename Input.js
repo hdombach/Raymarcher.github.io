@@ -15,19 +15,19 @@ export function AttachMouseInput(viewInfo, element) {
     var isMouseDown = false;
 
 
-    window.onmousedown = function(event) {
+    element.onmousedown = function(event) {
         isMouseDown = true;
     }
 
-    window.onmouseup = function(event) {
+    element.onmouseup = function(event) {
         isMouseDown = false;
     }
 
-    window.onmouseleave = function(event) {
+    element.onmouseleave = function(event) {
         isMouseDown = false;
     }
 
-    window.onmousemove = function(event) {
+    element.onmousemove = function(event) {
         if (isMouseDown) {
 
             var movement = vec3.create();
@@ -42,7 +42,7 @@ export function AttachMouseInput(viewInfo, element) {
         }
     }
 
-    window.onwheel = function(event) {
+    element.onwheel = function(event) {
 
         if (event.ctrlKey || event.shiftKey) {
 
