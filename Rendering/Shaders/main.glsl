@@ -33,7 +33,7 @@ void main() {
         float step = DE(currentRay.position);
         currentRay = marchRay(currentRay, step);
         d += step;
-        if (step < stepClamp || i < maxMarches) {
+        if (step < stepClamp || i > maxMarches) {
             break;
         }
         if (d > 100.0) {
