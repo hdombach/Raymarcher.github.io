@@ -42,8 +42,8 @@ class Renderer {
     }
 
     resize() {
-        const width = this.canvas.clientWidth * this.info.resolutionMultiplier / 100;
-        const height = this.canvas.clientHeight * this.info.resolutionMultiplier / 100;
+        const width = Math.floor(this.canvas.clientWidth * this.info.resolutionMultiplier / 100);
+        const height = Math.floor(this.canvas.clientHeight * this.info.resolutionMultiplier / 100);
 
         if (this.canvas.width != width || this.canvas.height != height) {
             console.log("resized");
@@ -108,8 +108,6 @@ class Renderer {
 
             this.gl.uniform1i(this.programManager.info.uniformLocations.bulbIterations,
                 this.info.bulbIterations);
-
-            console.log(this.info.stepClamp);
         }
     }
 

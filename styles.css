@@ -10,13 +10,36 @@
 
 .menu {
     z-index: 2;
-    height: 100%;
-    padding-left: 10px;
     width: 200px;
+    height: 85%;
     float: right;
+    margin: 10px;
+    padding-left: 10px;
     background-color: rgba(255, 255, 255, 0.50);
+    pointer-events: initial;
+    overflow: scroll;
+
+    border-radius: 10px;
    
     box-shadow: 0px 0px 10px gray;
+
+    transition: width 0.5s, height 0.5s;
+}
+
+.menu.collapsed {
+    width: 35px;
+    height: 40px;
+
+    overflow: hidden;
+}
+
+.collapseButton {
+    margin: 10px;
+    float: right;
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+    border-width: 1px;
 }
 
 .numberinput {
