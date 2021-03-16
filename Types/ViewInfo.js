@@ -2,7 +2,7 @@ class ViewInfo {
     constructor() {
         this.cameraPositionX = 0;
         this.cameraPositionY = 0.001;
-        this.cameraPositionZ = -4.001;
+        this.cameraPositionZ = -2.001;
 
         this.cameraZoom = 1.5;
         

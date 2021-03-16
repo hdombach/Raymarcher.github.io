@@ -10,13 +10,22 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     </head>
     <body>
-        <canvas id="glCanvas" class="fullscreen"></canvas>
+        <div class="view-container">
+            <div class="navigationBar">
+                <span class="material-icons" id="qualitySettingsBtn">tune</span>
+                <span class="material-icons" id="materialSettingsBtn">color_lens</span>
+                <span class="material-icons" id="renderSettingsBtn">photo_camera</span>
+            </div>
+
+            <canvas id="glCanvas" class="centerView"></canvas>
+        </div>
 
         <div class="fullscreen" id="overlay" style="pointer-events: none;">
             <!--  Insert button for hiding and showing menu -->
-            <div class="menu" id="menu">
-                <span class="material-icons" id="collapseButton" style="float: right; margin: 10px;">menu</span>
-                <h2>Settings</h2>
+
+            <div class="menu" id="qualityMenu">
+                <span class="material-icons" id="closeBtn" style="float: right; margin: 10px;">close</span>
+                <h2>Quality Settings</h2>
 
                 <!--<p>Camera Position: </p>
                 <input type="number" class="numberinput" id="cameraPositionX" step=0.1>
@@ -36,14 +45,19 @@
 
                 <p>Zoom: </p>
                 <input type="number" class="numberinput" id="cameraZoom" step=0.1>
-
-                <h3>Quality settings</h3>
                 <p>Bulb Iterations</p>
                 <input type="number" class="numberinput" id="bulbIterations">
                 <p>Marches Count</p>
                 <input type="number" class="numberinput" id="maxMarches">
                 <p>Step Clamp</p>
                 <input type="number" class="numberinput" id="stepClamp">
+            </div>
+
+            <div class="menu" id="renderMenu">
+                <span class="material-icons" id="closeBtn" style="float: right; margin: 10px">close</span>
+                <h2>Render</h2>
+
+                <p>NA</p>
             </div>
         </div>
 

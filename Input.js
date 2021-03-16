@@ -11,6 +11,29 @@ export function AttachNumberInputs(viewInfo) {
     }
 }
 
+export function AttachMinimizeButtons() {
+    var menus = document.getElementsByClassName("menu");
+
+    for (const menu of menus) {
+        
+        menu.children.namedItem("collapseButton").onclick = function() {
+            menu.style.height = null;
+            menu.classList.toggle("collapsed");
+        }
+    }
+}
+
+export function AttachCloseButtons() {
+    var menus = document.getElementsByClassName("menu");
+
+    for (const menu of menus) {
+        menu.children.namedItem("closeBtn").onclick = function() {
+            menu.style.visibility = "hidden";
+            menu.style.display = "none";
+        }
+    }
+}
+
 export function AttachKeyInput(keyTracker) {
     keyTracker.testKey = function(key) {
         if (this[key] === undefined) {
@@ -60,8 +83,8 @@ export function AttachMouseInput(viewInfo, element) {
         }
     }
 
-    element.onwheel = function(event) {
-
+    element.addEventListener('wheel', (event) => {
+        event.preventDefault();
         if (event.ctrlKey || event.shiftKey) {
 
             //move camera foward
@@ -80,5 +103,5 @@ export function AttachMouseInput(viewInfo, element) {
             viewInfo.rotateCamera(movement);
             
         }
-    }
+    }, {passive: false} );
 }

@@ -1,5 +1,5 @@
 import Renderer from "./Rendering/Renderer.js"
-import { AttachNumberInputs, AttachMouseInput, AttachKeyInput} from "./Input.js"
+import { AttachNumberInputs, AttachMouseInput, AttachKeyInput, AttachCloseButtons} from "./Input.js"
 
 class MainView {
     constructor() {
@@ -16,10 +16,13 @@ class MainView {
         AttachMouseInput(this.renderer.info, this.canvas);
 
         
-        const menu = document.getElementById("menu");
+        /*const menu = document.getElementById("qualityMenu");
         document.getElementById("collapseButton").onclick = function() {
             menu.classList.toggle("collapsed");
-        };
+        };*/
+
+        AttachCloseButtons();
+
     }
 
     render(time) {
@@ -40,7 +43,3 @@ function newFrame(time) {
 }
 
 newFrame(0);
-
-window.addEventListener('wheel', (e) => {
-    e.preventDefault();
-  }, {passive: false} );
