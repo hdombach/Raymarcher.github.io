@@ -1,11 +1,16 @@
 import Renderer from "./Rendering/Renderer.js"
-import { AttachNumberInputs, AttachMouseInput } from "./Input.js"
+import { AttachNumberInputs, AttachMouseInput, AttachKeyInput} from "./Input.js"
 
 class MainView {
     constructor() {
+        this.keyTracker = new Object();
+        console.log(this.keyTracker)
         this.canvas = document.getElementById("glCanvas");
-        this.renderer = new Renderer(this.canvas);
+        this.renderer = new Renderer(this.canvas, this.keyTracker);
         this.lastTime = 0;
+
+        AttachKeyInput(this.keyTracker);
+
         AttachNumberInputs(this.renderer.info);
 
         AttachMouseInput(this.renderer.info, this.canvas);

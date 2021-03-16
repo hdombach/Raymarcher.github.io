@@ -8,7 +8,7 @@ import RenderProgramManager from "./RenderProgramManager.js";
  * 
  */
 class Renderer {
-    constructor(canvas) {
+    constructor(canvas, keyTracker) {
         this.canvas = canvas;
         
         this.gl = canvas.getContext("webgl");
@@ -16,6 +16,8 @@ class Renderer {
         this.programManager = new RenderProgramManager(this.gl);
 
         this.info = new ViewInfo();
+
+        this.keyTracker = keyTracker;
 
         if (this.gl === null) {
             alert("Your browser does not support webgl");
@@ -57,6 +59,35 @@ class Renderer {
         }
     }
 
+    handleInputs() {
+        var movement = vec3.create();
+        var speed = 0.01;
+
+
+        if (this.keyTracker.testKey("a")) {
+            movement[0] -= speed;
+        }
+        if (this.keyTracker.testKey("d")) {
+            movement[0] += speed;
+        }
+        if (this.keyTracker.testKey("q")) {
+            movement[1] -= speed;
+        }
+        if (this.keyTracker.testKey("e")) {
+            movement[1] += speed;
+        }
+        if (this.keyTracker.testKey("s")) {
+            movement[2] -= speed;
+        }
+        if (this.keyTracker.testKey("w")) {
+            movement[2] += speed;
+        }
+
+        this.info.moveCamera(movement);
+
+        this.info.update();
+    }
+
     /**
      * Binds the buffer as if it were four vertices creating a square. Has to be called every frame.
      * @param {ArrayBuffer} buffer 
@@ -82,7 +113,7 @@ class Renderer {
 
     bindUniforms() {
         if ("uniformLocations" in this.programManager.info) {
-            this.info.update();
+            this.handleInputs();
 
             this.gl.uniform4f(this.programManager.info.uniformLocations.cameraPosition,
                 this.info.cameraPositionX, this.info.cameraPositionY,
