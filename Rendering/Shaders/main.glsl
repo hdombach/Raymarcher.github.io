@@ -7,6 +7,7 @@ uniform vec2 cameraResolution;
 uniform float exposure;
 uniform int maxMarches;
 uniform float stepClamp;
+uniform float ambientOcclusion;
 
 varying lowp vec2 vecPosition;
 
@@ -29,10 +30,12 @@ void main() {
     //return;
 
     float d = 0.0;
+    int steps = 0;
     for (int i = 1; i <= MAX_ITERATIONS; i++) {
         float step = DE(currentRay.position);
         currentRay = marchRay(currentRay, step);
         d += step;
+        steps += 1;
         if (step < stepClamp || i > maxMarches) {
             break;
         }
@@ -45,6 +48,7 @@ void main() {
     
 
     float gray = 1.0 / exp(d * exposure);
+    gray *= pow(ambientOcclusion, float(steps));
     gl_FragColor = vec4(gray, gray, gray, 1);
     return;
 }

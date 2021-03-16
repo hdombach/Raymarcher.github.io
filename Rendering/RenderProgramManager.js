@@ -108,6 +108,7 @@ class RenderProgramManager {
         self.info.uniformLocations.maxMarches = self.gl.getUniformLocation(self.mainProgram, "maxMarches");
         self.info.uniformLocations.stepClamp = self.gl.getUniformLocation(self.mainProgram, "stepClamp");
         self.info.uniformLocations.bulbIterations = self.gl.getUniformLocation(self.mainProgram, "bulbIterations");
+        self.info.uniformLocations.ambientOcclusion = self.gl.getUniformLocation(self.mainProgram, "ambientOcclusion");
     }
 
     loadMainProgram(self) {
