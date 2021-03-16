@@ -139,6 +139,9 @@ class Renderer {
 
             this.gl.uniform1i(this.programManager.info.uniformLocations.bulbIterations,
                 this.info.bulbIterations);
+
+            this.gl.uniform1f(this.programManager.info.uniformLocations.ambientOcclusion,
+                this.info.ambientOcclusion);
         }
     }
 
