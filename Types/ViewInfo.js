@@ -19,6 +19,7 @@ class ViewInfo {
         this.cameraMatrix = mat4.create();
 
         this.exposure = 1;
+        this.ambientOcclusion = 0.995;
 
         this.quaternion = quat.create();
 

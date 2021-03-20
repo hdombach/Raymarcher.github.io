@@ -36,13 +36,13 @@ class RenderShaderCompiler {
     console.log(url);
 
     request.addEventListener("load", function() {
-      var searchRegExp = /(?<=IMPORT )[^\n]*/g;
+      var searchRegExp = /(?:IMPORT )[^\n]*/g;
       var str = this.responseText;
       var matches = [...str.matchAll(searchRegExp)]
       matches.sort((a, b) => b.index - a.index)
 
       for (const match of matches) {
-        const currentUrl = String(match);
+        const currentUrl = String(match).slice(7, match[0].length);
 
         if (!compiler._importedFiles.includes(currentUrl)) {
           compiler._importedFiles.push(currentUrl);
